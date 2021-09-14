@@ -2,7 +2,7 @@
 
 ## Steps
 
-- `webpack` + `babel` + `react` + `typescript` 개발환경 설정하기.
+#### `webpack` + `babel` + `react` + `typescript` 개발환경 설정하기.
 
 ```bash
 # 현재 디렉토리에 npm 활성화
@@ -37,7 +37,7 @@ $ npm install html-webpack-plugin -D
 
 ```bash
 # 트랜스파일링을 위한 babel 설치
-$ npm install @babel/core @babel/preset-env @babel/preset-react @babel/cli core-js babel-loader -D
+$ npm install @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/cli core-js babel-loader -D
 ```
 
 ```bash
@@ -49,3 +49,30 @@ $ npm install typescript ts-loader -D
 # react, react-dom 설치
 $ npm install react react-dom
 ```
+
+#### `Official Document` 리딩.
+
+- `JSX`
+
+- `엘리먼트 렌더링`
+
+- `Component, Props`
+
+    - `componentDidMount`
+
+    - `componentDidUpdate`
+
+    - `componentWillUnmount`
+
+    - `componentDidCatch`
+
+    - `shouldComponentUpdate`
+  
+      - 리렌더링 최적화 작업을 진행하기 위해 사용했던 것으로 기억함.
+
+- `State와 생명주기`
+
+| 상태 업데이트의 비동기성 | 상태 업데이트의 병합 |
+| :-----------: | :-----------: |
+| ![updateState](./images/updateState.png) | ![mergeState](./images/mergeState.png) |
+
