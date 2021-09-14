@@ -60,9 +60,16 @@ $ npm install react react-dom
 
     - `componentDidMount`
 
+        - 네트워크 요청의 시작점
+        - DOM 접근의 시작점
+
     - `componentDidUpdate`
 
+        - 동일한 컴포넌트와 동일한 라우팅 경로상황에서 쿼리 파라미터만 변하는 경우에 유용함.
+
     - `componentWillUnmount`
+
+        - 더이상 사용하지 않는 자원의 해제
 
     - `componentDidCatch`
 
