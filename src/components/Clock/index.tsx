@@ -1,7 +1,12 @@
 import React from 'react'
+import { ClockProps, ClockState } from './types'
 
-export default class Clock extends React.Component {
-  constructor (props: Record<string, any>) {
+// [ISSUE] 클래스 컴포넌트 이용시 Props, State 에 대한 타입 지정
+// https://react-typescript-cheatsheet.netlify.app
+// https://github.com/piotrwitek/react-redux-typescript-guide#react--redux-in-typescript---complete-guide
+
+export default class Clock extends React.Component<ClockProps, ClockState> {
+  constructor (props: ClockProps) {
     super(props)
     this.state = {
       currentTime: new Date().toLocaleTimeString(),
@@ -9,14 +14,16 @@ export default class Clock extends React.Component {
     }
     this.startClock = this.startClock.bind(this)
   }
-  
+
   componentDidMount () {
     this.startClock()
   }
-  component
+
   componentWillUnmount () {
     const { clockTimerId } = this.state
-    clearInterval(clockTimerId)
+    if (typeof clockTimerId === 'number') {
+      clearInterval(clockTimerId)
+    }
   }
 
   startClock () {
@@ -32,10 +39,11 @@ export default class Clock extends React.Component {
   }
 
   render () {
+    const { clockName } = this.props
     const { currentTime } = this.state
     return (
         <div className="clock-wrap">
-            <h2>Clock</h2>
+            <h2>Clock-{clockName || '이름 없음'}</h2>
             <h3>{currentTime}</h3>
         </div>
     )

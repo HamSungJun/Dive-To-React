@@ -79,6 +79,8 @@ $ npm install react react-dom
 
 - `State와 생명주기`
 
+    - [Typing-Class-Component](./docs/Typing-Class-Components/readme.md)
+
 | 상태 업데이트의 비동기성 | 상태 업데이트의 병합 |
 | :-----------: | :-----------: |
 | ![updateState](./images/updateState.png) | ![mergeState](./images/mergeState.png) |
