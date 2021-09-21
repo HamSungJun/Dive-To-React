@@ -85,3 +85,64 @@ $ npm install react react-dom
 | :-----------: | :-----------: |
 | ![updateState](./images/updateState.png) | ![mergeState](./images/mergeState.png) |
 
+- `이벤트 처리하기`
+
+    - 리액트의 이벤트는 고유의 합성 이벤트 객체를 이용, 브라우저마다 다른 명세를 지니지 않도록 한다.
+
+    - 이벤트 기본동작은 반드시 `event.preventDefault()` 를 호출할 것.
+
+    - 이벤트 핸들러에 아래와 같이 바인딩하여 `this` 가 생성된 인스턴스 자신을 가르키도록 할 것.
+
+    ```ts
+        class Clock extends React.Component<clockProps, clockState>{
+              constructor (props: ClockProps) {
+                super(props)
+                this.state = {
+                    currentTime: new Date().toLocaleTimeString(),
+                    clockTimerId: null
+                }
+                this.startClock = this.startClock.bind(this)
+                this.stopClock = this.stopClock.bind(this)
+            }
+        }
+    ```
+- `조건부 렌더링`
+
+    - 기호에 따라, 삼항 연산, 조건부 렌더링 컴포넌트, 제어문을 통해 처리할 수 있다.
+
+    - 조건의 복잡도와 내용이 많아지는 경우 해당 내용을 컴포넌트로 분리하여 스플리팅 처리를 고려해볼 수 있다.
+
+- `리스트와 Key`
+
+    - [List-With-Key](./docs/List-With-Key/readme.md)
+
+| 리스트 키 콘텍스트 |
+| :-----------: |
+| ![keyContext](./images/keyContext.png) |
+
+- `폼`
+
+    - 개별 폼 요소에 하나의 핸들러를 입력하는 과정이 부담스럽다면 `name` 프로퍼티를 지정해서 해결 할 수 있다.
+    
+    ```ts
+    handleInputChange(event) {
+        const target = event.target;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+    ```
+
+- `State 끌어올리기`
+
+    - 공통 부모를 갖는 두 자식 요소간에서 서로의 변경점이 다른 하나에 반영되어야 한다면 공통 부모쪽에 `state` 를 배치하고 자식 요소가 `props` 로 부모의 상태값을 받아 갱신하도록 처리해 볼 것.
+
+- `합성과 상속`
+
+    - `props.children` 을 통해 부모컴포넌트가 입력한 JSX 템플레이트를 그대로 전달할 수 있다. 컴파일은 부모 컴포넌트 시점에서 진행되는 것에 유의.
+  
+    - `props.key` 에도 컴포넌트를 할당하여 전달 및 렌더링 할 수 있다.
+
+- `React로 생각하기`

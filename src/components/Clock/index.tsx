@@ -1,5 +1,6 @@
 import React from 'react'
 import { ClockProps, ClockState } from './types'
+import './index.scss'
 
 // [ISSUE] 클래스 컴포넌트 이용시 Props, State 에 대한 타입 지정
 // https://react-typescript-cheatsheet.netlify.app
@@ -13,6 +14,7 @@ export default class Clock extends React.Component<ClockProps, ClockState> {
       clockTimerId: null
     }
     this.startClock = this.startClock.bind(this)
+    this.stopClock = this.stopClock.bind(this)
   }
 
   componentDidMount () {
@@ -38,14 +40,28 @@ export default class Clock extends React.Component<ClockProps, ClockState> {
     })
   }
 
+  stopClock () {
+    const { clockTimerId } = this.state
+    if (clockTimerId) {
+      clearInterval(clockTimerId)
+      this.setState({
+        clockTimerId: null
+      })
+    }
+  }
+
   render () {
+    const { startClock, stopClock } = this
     const { clockName } = this.props
-    const { currentTime } = this.state
+    const { currentTime, clockTimerId } = this.state
+    const clockButtonText = clockTimerId ? '시계 멈추기' : '시계 시작하기'
+    const clockButtonHandler = clockTimerId ? stopClock : startClock
     return (
-        <div className="clock-wrap">
+        <article className="clock-wrap">
             <h2>Clock-{clockName || '이름 없음'}</h2>
             <h3>{currentTime}</h3>
-        </div>
+            <button onClick={clockButtonHandler}>{clockButtonText}</button>
+        </article>
     )
   }
 }
