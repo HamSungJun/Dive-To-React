@@ -157,3 +157,31 @@ $ npm install react react-dom
     - [Accessibility](./docs/Accessibility/readme.md)
 
 - `코드 스플리팅`
+
+    - 세 개의 `Clock.tsx` 컴포넌트를 지연 로딩을 실험삼아 진행해 보았다.
+
+```ts
+import React, { Suspense, lazy } from 'react'
+import './App.scss'
+const LazyClockComponent = lazy(() => import(/* webpackChunkName: 'Clock' */ './Clock'))
+class App extends React.Component {
+  render () {
+    // [DESC] 지연 컴포넌트는 Suspense 하위에서 렌더링 되어야 합니다.
+    // [DESC] Suspense 컴포넌트의 fallback 프로퍼티를 통해 가져오는 동안 보여줄 요소를 지정할 수 있습니다. (ex. loader)
+    return (
+        <div className="App">
+          <Suspense fallback={<div>시계가져오는중</div>}>
+            <LazyClockComponent clockName="123" />
+            <LazyClockComponent clockName="456"/>
+            <LazyClockComponent clockName="789"/>
+          </Suspense>
+        </div>
+    )
+  }
+}
+
+export default App
+```
+| Magic Comment | Route Based Splitting |
+|:-----:|:-----:|
+| ![lazyClock](./images/lazyClock.png)| ![routeSplitting](./images/routeSplitting.png) |
