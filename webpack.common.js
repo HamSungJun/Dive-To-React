@@ -34,7 +34,9 @@ module.exports = {
     }
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: true
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '/public/index.html')
     }),

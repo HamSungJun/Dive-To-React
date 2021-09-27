@@ -4,6 +4,7 @@ import { someElement, createGreeter, wrappedImage, escaped } from './Jsx'
 import Clock from './Clock'
 import NumberList from './NumberList'
 import SlottedButton from './SlottedButton'
+import Calculator from './Calculator'
 class App extends React.Component {
   render () {
     return (
@@ -28,6 +29,7 @@ class App extends React.Component {
                 <span>토마토 보더 버튼!</span>
               </div>
             </SlottedButton>
+            <Calculator />
         </div>
     )
   }

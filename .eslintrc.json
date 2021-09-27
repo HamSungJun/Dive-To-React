@@ -21,6 +21,7 @@
     ],
     "rules": {
         "no-use-before-define": "off",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "no-useless-constructor": "off"
     }
 }
