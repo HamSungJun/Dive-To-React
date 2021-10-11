@@ -34,15 +34,20 @@ module.exports = {
     }
   },
   plugins: [
-    new BundleAnalyzerPlugin({
-      openAnalyzer: true
-    }),
+    // new BundleAnalyzerPlugin({
+    //   openAnalyzer: true
+    // }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '/public/index.html')
     }),
     new MiniCssExtractPlugin()
   ],
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      Components: path.resolve(__dirname, 'src', 'components'),
+      Contexts: path.resolve(__dirname, 'src', 'contexts')
+    },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   }
 }

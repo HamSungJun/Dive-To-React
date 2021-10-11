@@ -1,12 +1,13 @@
 import React from 'react'
 import { ClockProps, ClockState } from './types'
 import './index.scss'
-
+import LanguageContext from 'Contexts/Language'
 // [ISSUE] 클래스 컴포넌트 이용시 Props, State 에 대한 타입 지정
 // https://react-typescript-cheatsheet.netlify.app
 // https://github.com/piotrwitek/react-redux-typescript-guide#react--redux-in-typescript---complete-guide
 
 export default class Clock extends React.Component<ClockProps, ClockState> {
+  static contextType = LanguageContext
   constructor (props: ClockProps) {
     super(props)
     this.state = {
@@ -19,6 +20,7 @@ export default class Clock extends React.Component<ClockProps, ClockState> {
 
   componentDidMount () {
     this.startClock()
+    console.log(this.context)
   }
 
   componentWillUnmount () {
