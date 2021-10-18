@@ -3,6 +3,7 @@ import './index.scss'
 import { AppProps, AppState } from './types'
 import LanguageContext from 'Contexts/Language'
 import ThemeContext from 'Contexts/Theme'
+import ErrorBoundary from 'Components/ErrorBoundary'
 
 const LazyClockComponent = lazy(() => import(/* webpackChunkName: 'Clock' */ '../Clock'))
 class App extends React.Component<AppProps, AppState> {
@@ -37,17 +38,19 @@ class App extends React.Component<AppProps, AppState> {
   render () {
     const { languageContext, themeContext } = this.state
     return (
-      <LanguageContext.Provider value={languageContext}>
-        <ThemeContext.Provider value={themeContext}>
-          <div className="App">
-            <Suspense fallback={<div>시계가져오는중</div>}>
-              <LazyClockComponent clockName="123" />
-              <LazyClockComponent clockName="456"/>
-              <LazyClockComponent clockName="789"/>
-            </Suspense>
-          </div>
-        </ThemeContext.Provider>
-      </LanguageContext.Provider>
+      <ErrorBoundary>
+        <LanguageContext.Provider value={languageContext}>
+          <ThemeContext.Provider value={themeContext}>
+            <div className="App">
+              <Suspense fallback={<div>시계가져오는중</div>}>
+                <LazyClockComponent clockName="123" />
+                <LazyClockComponent clockName="456"/>
+                <LazyClockComponent clockName="789"/>
+              </Suspense>
+            </div>
+          </ThemeContext.Provider>
+        </LanguageContext.Provider>
+      </ErrorBoundary>
     )
   }
 }
